@@ -11,6 +11,7 @@
 	<packaging>jar</packaging>
 	<name>commons-filereader</name>
 	<version>0.0.2-SNAPSHOT</version>
+	<description>文件内容读取工具包</description>
 
 	<dependencies>
 		<dependency>
