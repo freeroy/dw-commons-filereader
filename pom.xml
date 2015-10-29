@@ -10,7 +10,7 @@
 	<artifactId>dw-commons-filereader</artifactId>
 	<packaging>jar</packaging>
 	<name>commons-filereader</name>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<description>文件内容读取工具包</description>
 	
 	<!-- scm配置 -->
