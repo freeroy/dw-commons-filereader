@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.developerworld.commons</groupId>
 		<artifactId>dw-commons-parent</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.2</version>
 	</parent>
 
 	<artifactId>dw-commons-filereader</artifactId>
@@ -12,45 +12,6 @@
 	<name>commons-filereader</name>
 	<version>0.0.2-SNAPSHOT</version>
 	<description>文件内容读取工具包</description>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.developerworld.commons</groupId>
-			<artifactId>dw-commons-io</artifactId>
-			<version>0.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.12</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-scratchpad</artifactId>
-			<version>3.12</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.12</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>1.8.10</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
 	
 	<!-- scm配置 -->
 	<scm>
@@ -58,4 +19,32 @@
 		<developerConnection>${scm.developerConnection}</developerConnection>
 		<url>${scm.url}</url>
 	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.developerworld.commons</groupId>
+			<artifactId>dw-commons-io</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+		</dependency>
+	</dependencies>
 </project>
