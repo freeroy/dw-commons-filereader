@@ -19,11 +19,10 @@ import org.developerworld.commons.filereader.FileReader;
  */
 public class DocxFileReader implements FileReader {
 
-	public String readFileToString(File file) throws XmlException,
-			OpenXML4JException, IOException {
+	public String readFileToString(File file) throws XmlException, OpenXML4JException, IOException {
 		String rst = null;
 		OPCPackage opcPackage = null;
-		XWPFWordExtractor docx=null;
+		XWPFWordExtractor docx = null;
 		try {
 			opcPackage = OPCPackage.open(file.getPath(), PackageAccess.READ);
 			// 获取执行器
@@ -31,10 +30,13 @@ public class DocxFileReader implements FileReader {
 			// 获取内容
 			rst = docx.getText();
 		} finally {
-			if(docx!=null)
-				docx.close();
-			if (opcPackage != null)
-				opcPackage.close();
+			try {
+				if (docx != null)
+					docx.close();
+			} finally {
+				if (opcPackage != null)
+					opcPackage.close();
+			}
 		}
 		return rst;
 	}

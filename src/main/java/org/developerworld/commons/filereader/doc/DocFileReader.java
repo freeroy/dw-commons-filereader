@@ -20,7 +20,7 @@ public class DocFileReader implements FileReader {
 	public String readFileToString(File file) throws IOException {
 		String rst = null;
 		InputStream inputStream = null;
-		WordExtractor extractor=null;
+		WordExtractor extractor = null;
 		try {
 			// 获取输入流
 			inputStream = new FileInputStream(file);
@@ -29,10 +29,13 @@ public class DocFileReader implements FileReader {
 			// 获取内容
 			rst = extractor.getText();
 		} finally {
-			if(extractor!=null)
-				extractor.close();
-			if (inputStream != null)
-				inputStream.close();
+			try {
+				if (extractor != null)
+					extractor.close();
+			} finally {
+				if (inputStream != null)
+					inputStream.close();
+			}
 		}
 		return rst;
 	}

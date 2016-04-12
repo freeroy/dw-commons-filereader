@@ -22,7 +22,7 @@ public class XlsxFileReader implements FileReader {
 		String rst = null;
 		InputStream inputStream = null;
 		XSSFWorkbook workbook = null;
-		XSSFExcelExtractor extractor=null;
+		XSSFExcelExtractor extractor = null;
 		try {
 			inputStream = new FileInputStream(file);
 			workbook = new XSSFWorkbook(inputStream);
@@ -31,12 +31,18 @@ public class XlsxFileReader implements FileReader {
 			extractor.setIncludeSheetNames(false);
 			rst = extractor.getText();
 		} finally {
-			if(extractor!=null)
-				extractor.close();
-			if(workbook!=null)
-				workbook.close();
-			if (inputStream != null)
-				inputStream.close();
+			try {
+				if (extractor != null)
+					extractor.close();
+			} finally {
+				try {
+					if (workbook != null)
+						workbook.close();
+				} finally {
+					if (inputStream != null)
+						inputStream.close();
+				}
+			}
 		}
 		return rst;
 	}

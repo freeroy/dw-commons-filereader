@@ -5,10 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.poi.hslf.HSLFSlideShow;
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.model.TextRun;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.extractor.QuickButCruddyTextExtractor;
 import org.developerworld.commons.filereader.FileReader;
 
 /**
@@ -21,27 +18,23 @@ import org.developerworld.commons.filereader.FileReader;
 public class PptFileReader implements FileReader {
 
 	public String readFileToString(File file) throws IOException {
-		StringBuilder rst = new StringBuilder();
+		String rst = null;
 		InputStream inputStream = null;
+		QuickButCruddyTextExtractor extractor = null;
 		try {
 			inputStream = new FileInputStream(file);
-			SlideShow ss = new SlideShow(new HSLFSlideShow(inputStream));
-			Slide[] slides = ss.getSlides();
-			if (slides != null) {
-				for (int i = 0; i < slides.length; i++) {
-					TextRun[] textRuns = slides[i].getTextRuns();
-					if (textRuns != null) {
-						for (int j = 0; j < textRuns.length; j++)
-							rst.append(textRuns[j].getText());
-					}
-				}
-			}
+			extractor = new QuickButCruddyTextExtractor(inputStream);
+			rst = extractor.getTextAsString();
 		} finally {
-			if (inputStream != null)
-				inputStream.close();
+			try {
+				if (extractor != null)
+					extractor.close();
+			} finally {
+				if (inputStream != null)
+					inputStream.close();
+			}
 		}
-		rst.trimToSize();
-		return rst.toString();
+		return rst;
 	}
 
 }

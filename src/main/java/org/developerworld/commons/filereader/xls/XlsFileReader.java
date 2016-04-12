@@ -31,12 +31,18 @@ public class XlsFileReader implements FileReader {
 			extractor.setIncludeSheetNames(false);
 			rst = extractor.getText();
 		} finally {
-			if(extractor!=null)
-				extractor.close();
-			if(workbook!=null)
-				workbook.close();
-			if (inputStream != null)
-				inputStream.close();
+			try {
+				if (extractor != null)
+					extractor.close();
+			} finally {
+				try {
+					if (workbook != null)
+						workbook.close();
+				} finally {
+					if (inputStream != null)
+						inputStream.close();
+				}
+			}
 		}
 		return rst;
 	}

@@ -19,21 +19,22 @@ import org.developerworld.commons.filereader.FileReader;
  */
 public class PptxFileReader implements FileReader {
 
-	public String readFileToString(File file) throws XmlException,
-			OpenXML4JException, IOException {
+	public String readFileToString(File file) throws XmlException, OpenXML4JException, IOException {
 		String rst = "";
 		OPCPackage opcPackage = null;
-		XSLFPowerPointExtractor extractor =null;
+		XSLFPowerPointExtractor extractor = null;
 		try {
 			opcPackage = OPCPackage.open(file.getPath(), PackageAccess.READ);
-			extractor = new XSLFPowerPointExtractor(
-					opcPackage);
+			extractor = new XSLFPowerPointExtractor(opcPackage);
 			rst = extractor.getText();
 		} finally {
-			if(extractor!=null)
-				extractor.close();
-			if (opcPackage != null)
-				opcPackage.close();
+			try {
+				if (extractor != null)
+					extractor.close();
+			} finally {
+				if (opcPackage != null)
+					opcPackage.close();
+			}
 		}
 		return rst;
 	}
